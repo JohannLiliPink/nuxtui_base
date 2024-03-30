@@ -4,9 +4,18 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   modules: [
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
   ],
 
+  alias: {
+    pinia: "/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs"
+  },
+
+  build: {
+    transpile: ['pinia-plugin-persistedstate'],
+  },
 
   tailwindcss: {
     cssPath: '~/public/assets/css/soft-ui-dashboard-tailwind.css',

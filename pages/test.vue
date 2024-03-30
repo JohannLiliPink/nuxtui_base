@@ -1,6 +1,23 @@
 <script setup>
 
   import AppLayout from '~/layout/AppLayout.vue';
+  const {menuActive} = useTheme()
+
+  onMounted( () => {
+
+    if (process.client)
+    {
+
+      setTimeout(() => {
+          
+        menuActive( 'test' );
+
+      }, 11);
+
+    }
+
+  });
+
 
 </script>
 

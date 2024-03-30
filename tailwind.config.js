@@ -4,6 +4,8 @@ export default {
 
   mode: "jit",
 
+  darkMode: 'class',
+
   content: [],
   theme: {
     screens: {

@@ -8,6 +8,12 @@ export const website_routes = [
     component: () => import('~/pages/dashboard.vue').then(r => r.default || r)
   },
 
+  {
+    name: 'dashboard',
+    path: '/dashboard',
+    component: () => import('~/pages/dashboard.vue').then(r => r.default || r)
+  },
+
 
   {
     name: 'test',

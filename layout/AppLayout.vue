@@ -17,19 +17,23 @@
 
     if (process.client)
     {
+      const html_ = document.querySelector('html');
+      html_.classList.add('dark');
 
       setTimeout(() => {
+
           
         const paragraph = document.querySelector('body');
         paragraph.classList.add('m-0');
-        paragraph.classList.add('font-sans');
+        paragraph.classList.add('m-0');
         
         paragraph.classList.add('text-base');
         paragraph.classList.add('antialiased');
         paragraph.classList.add('font-normal');
         paragraph.classList.add('leading-default');
-        paragraph.classList.add('bg-gray-50');
+        // paragraph.classList.add('bg-gray-50');
         paragraph.classList.add('text-slate-500');
+        paragraph.classList.add('dark:bg-black');
 
       }, 11);
       
@@ -160,3 +164,9 @@
   <Configurator />
 
 </template>
+
+<!-- <style lang="css">
+  body{
+    background: #495057 !important;
+  }
+</style> -->

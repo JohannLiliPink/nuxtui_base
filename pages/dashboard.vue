@@ -1,6 +1,22 @@
 <script setup>
 
   import AppLayout from '~/layout/AppLayout.vue';
+  const {menuActive} = useTheme()
+
+  onMounted( () => {
+
+    if (process.client)
+    {
+
+      setTimeout(() => {
+          
+        menuActive( 'dashboard' );
+
+      }, 11);
+
+    }
+
+  });
 
   function year()
   {
