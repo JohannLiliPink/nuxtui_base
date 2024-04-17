@@ -24,8 +24,6 @@ export const useTheme = () => {
 
   function menuActive( btn_id )
   {
-
-    console.log( 'TEXT:::useTheme - Menu' , store_theme.btn_menu_active.from )
     const paragraph = document.getElementById('menu_btn_'+btn_id );
 
     paragraph.classList.add('shadow-soft-xl');

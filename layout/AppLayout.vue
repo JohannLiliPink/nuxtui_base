@@ -3,7 +3,7 @@
   import AsideMain from './Components/AsideMain.vue';
   import Configurator from './Components/Configurator.vue';
   import Footer from './Components/Footer.vue';
-  import NavBar from './Components/NavBar.vue';
+  // import NavBar from './Components/NavBar.vue';
   import Loader from './Components/Loader.vue';
 
   const props = defineProps( [ 'title' ]);
@@ -17,8 +17,6 @@
 
     if (process.client)
     {
-      const html_ = document.querySelector('html');
-      html_.classList.add('dark');
 
       setTimeout(() => {
 
@@ -31,9 +29,7 @@
         paragraph.classList.add('antialiased');
         paragraph.classList.add('font-normal');
         paragraph.classList.add('leading-default');
-        // paragraph.classList.add('bg-gray-50');
         paragraph.classList.add('text-slate-500');
-        paragraph.classList.add('dark:bg-black');
 
       }, 11);
       
@@ -146,9 +142,9 @@
 
   <main v-show="!loading"  class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200">
     
-    <NavBar @open-config="openConfig(true)">
+    <!-- <NavBar @open-config="openConfig(true)">
       <slot name="breadcrumb" />
-    </NavBar>
+    </NavBar> -->
 
     <div id="content-main" class="w-full px-6 py-6 mx-auto">
       
@@ -165,8 +161,19 @@
 
 </template>
 
-<!-- <style lang="css">
-  body{
-    background: #495057 !important;
+<style>
+
+  body {
+    background-color: #fff;
+    color: rgba(0,0,0,0.8);
   }
-</style> -->
+  /* .dark body {
+    background-color: #091a28;
+    color: #ebf4f1;
+  } */
+  .sepia body {
+    background-color: #f1e7d0;
+    color: #433422;
+  }
+  
+</style>

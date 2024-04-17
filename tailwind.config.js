@@ -4,7 +4,7 @@ export default {
 
   mode: "jit",
 
-  darkMode: 'class',
+  darkMode: 'selector',
 
   content: [],
   theme: {

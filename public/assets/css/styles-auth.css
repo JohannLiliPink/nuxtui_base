@@ -1,0 +1,21 @@
+.border-sh{
+
+  border: 1px solid #BFBFBF;
+  background-color: white;
+  box-shadow: 10px 10px 5px #aaaaaa;
+
+}
+
+.my-28{
+  margin-top: 6rem;
+  margin-bottom: 6rem;
+}
+
+
+.mt-28{
+  margin-top: 6rem;
+}
+
+.gap-4{
+  gap: 1rem;
+}

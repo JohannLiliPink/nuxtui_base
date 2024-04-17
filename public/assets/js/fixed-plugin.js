@@ -157,6 +157,7 @@ function sidebarColor(a) {
 // sidenav style
 
 transparentBtn.addEventListener("click", function () {
+  
   const active_style_attr = document.createAttribute("active-style");
   if (!this.hasAttribute(active_style_attr)) {
     // change trigger buttons style
@@ -257,30 +258,36 @@ whiteBtn.addEventListener("click", function () {
 // navbar fixed plugin
 
 if (navbar) {
+
   if (navbar.getAttribute("navbar-scroll") == "true") {
-    buttonNavbarFixed.setAttribute("checked", "true");
+
+    // buttonNavbarFixed.setAttribute("checked", "true");
+
   }
   buttonNavbarFixed.addEventListener("change", function () {
-    if (this.checked) {
-      navbar.setAttribute("navbar-scroll", "true");
-      navbar.classList.add("sticky");
-      navbar.classList.add("top-[1%]");
-      navbar.classList.add("backdrop-saturate-[200%]");
-      navbar.classList.add("backdrop-blur-[30px]");
-      navbar.classList.add("bg-[hsla(0,0%,100%,0.8)]");
-      navbar.classList.add("shadow-blur");
-      navbar.classList.add("z-110");
-    } else {
-      navbar.setAttribute("navbar-scroll", "false");
-      navbar.classList.remove("sticky");
-      navbar.classList.remove("top-[1%]");
-      navbar.classList.remove("backdrop-saturate-[200%]");
-      navbar.classList.remove("backdrop-blur-[30px]");
-      navbar.classList.remove("bg-[hsla(0,0%,100%,0.8)]");
-      navbar.classList.remove("shadow-blur");
-      navbar.classList.remove("z-110");
-    }
+
+    // if (this.checked) {
+      
+    //   navbar.setAttribute("navbar-scroll", "true");
+    //   navbar.classList.add("sticky");
+    //   navbar.classList.add("top-[1%]");
+    //   navbar.classList.add("backdrop-saturate-[200%]");
+    //   navbar.classList.add("backdrop-blur-[30px]");
+    //   navbar.classList.add("bg-[hsla(0,0%,100%,0.8)]");
+    //   navbar.classList.add("shadow-blur");
+    //   navbar.classList.add("z-110");
+    // } else {
+    //   navbar.setAttribute("navbar-scroll", "false");
+    //   navbar.classList.remove("sticky");
+    //   navbar.classList.remove("top-[1%]");
+    //   navbar.classList.remove("backdrop-saturate-[200%]");
+    //   navbar.classList.remove("backdrop-blur-[30px]");
+    //   navbar.classList.remove("bg-[hsla(0,0%,100%,0.8)]");
+    //   navbar.classList.remove("shadow-blur");
+    //   navbar.classList.remove("z-110");
+    // }
   });
+
 } else {
   // buttonNavbarFixed.setAttribute("checked", "true");
   buttonNavbarFixed.setAttribute("disabled", "true");

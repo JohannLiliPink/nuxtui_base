@@ -1,43 +1,7 @@
 <script setup>
 
-
   import { useThemeAdminStore } from '~/stores/theme';
   const theme = useThemeAdminStore();
-
-  const route = useRouter();
-
-  const hasRoute = ( route_ ) => {
-    let route_current = route.currentRoute.value.path;
-    let val_ = route_ === route_current ? true : false ;
-
-    return val_ === route_current ? 'white' : '#e20e7d' ;
-  };
-
-  const activeClass = ( route_ ) => {
-
-    let route_current = route.currentRoute.value.path;
-
-    let val_ = route_ === route_current ? true : false ;
-
-    if ( val_ ) {
-      return 'py-2.7 shadow-soft-xl text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg bg-white px-4 font-semibold text-slate-700 transition-colors';
-    } else {
-      return 'py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors';
-    }
-
-  };
-  const activeClassIcon = ( route_ ) => {
-
-    let route_current = route.currentRoute.value.path;
-    let val_ = route_ === route_current ? true : false ;
-
-    if ( val_ ) {
-      return 'bg-gradient-to-tl from-gray-500 to-black shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5';
-    } else {
-      return 'shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5';
-    }
-
-  };
 
 </script>
 
@@ -85,17 +49,6 @@
             <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Prueba</span>
           </NuxtLink>
         </li>
-
-        
-
-        <!-- <li class="mt-0.5 w-full">
-          <NuxtLink to="/dashboard" :class="activeClass( '/dashboard' )" >
-            <div :class="activeClassIcon( '/dashboard' )" >
-              <i class="fas fa-tachometer-alt" :style="'color: '+hasRoute( '/dashboard' )+' ;'"></i>
-            </div>
-            <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft"></span>
-          </NuxtLink>
-        </li> -->
 
 
       
@@ -258,6 +211,7 @@
             <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Sign Up</span>
           </a>
         </li>
+
       </ul>
     </div>
 
@@ -286,4 +240,3 @@
   </aside>
 
 </template>
-~/stores/theme

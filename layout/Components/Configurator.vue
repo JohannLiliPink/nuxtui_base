@@ -3,6 +3,23 @@
 
   const store_theme = useThemeAdminStore();
 
+  const colorMode = useColorMode();
+
+  onMounted( () => {
+
+    if (process.client)
+    {
+
+      setTimeout(() => {
+          
+        themeInit( );
+
+      }, 11);
+
+    }
+
+  });
+
   function sidebarColorConfig(a)
   {
     var color_from = a.target.getAttribute("data-color-from");
@@ -10,6 +27,124 @@
 
     store_theme.btn_menu_active.from = color_from;
     store_theme.btn_menu_active.to = color_to;
+  }
+
+  function navbarFixedChange()
+  {
+    setTimeout(() => {
+      navbarFixed();
+    }, 111);
+  }
+  function navbarFixed()
+  {
+
+    var navbar = document.querySelector("[navbar-main]");
+
+    if ( store_theme.navbar_fixed )
+    {
+      navbar.setAttribute("navbar-scroll", "true");
+      navbar.classList.add("sticky");
+      navbar.classList.add("top-[1%]");
+      navbar.classList.add("backdrop-saturate-[200%]");
+      navbar.classList.add("backdrop-blur-[30px]");
+      navbar.classList.add("bg-[hsla(0,0%,100%,0.8)]");
+      navbar.classList.add("shadow-blur");
+      navbar.classList.add("z-110");
+    } 
+    else
+    {
+      navbar.setAttribute("navbar-scroll", "false");
+      navbar.classList.remove("sticky");
+      navbar.classList.remove("top-[1%]");
+      navbar.classList.remove("backdrop-saturate-[200%]");
+      navbar.classList.remove("backdrop-blur-[30px]");
+      navbar.classList.remove("bg-[hsla(0,0%,100%,0.8)]");
+      navbar.classList.remove("shadow-blur");
+      navbar.classList.remove("z-110");
+    }
+
+  }
+
+  function sidenavTypeChange( type )
+  {
+    store_theme.sidenav_type = type;
+
+    setTimeout(() => {
+      sidenavType();
+    }, 111);
+  }
+  function sidenavType()
+  {
+    var non_active_style = ["bg-none", "bg-transparent", "text-fuchsia-500", "border-fuchsia-500"];
+    var active_style = ["bg-gradient-to-tl", "from-purple-700", "to-pink-500", "bg-fuchsia-500", "text-white", "border-transparent"];
+    var sidenav = document.querySelector("aside");
+    var transparent_sidenav_classes = ["xl:bg-transparent", "shadow-none"];
+    var sidenav_icons = sidenav.querySelectorAll("li a div");
+    var white_sidenav_classes = ["xl:bg-white", "shadow-soft-xl"];
+    var transparent_sidenav_icons = ["bg-white"];
+    var white_sidenav_icons = ["bg-gray-200"];
+
+    var sidenav_type = document.getElementById("type-bg-white");
+
+    if ( store_theme.sidenav_type == 'bg-white' )
+    {
+
+      sidenav.classList.add( "xl:bg-white" );
+      sidenav.classList.add( "shadow-soft-xl" );
+      sidenav.classList.remove( "xl:bg-transparent" );
+      sidenav.classList.remove( "shadow-none" );
+
+      for (var i = 0; i < sidenav_icons.length; i++)
+      {
+        white_sidenav_icons.forEach((style_class) => {
+          sidenav_icons[i].classList.add(style_class);
+        });
+        transparent_sidenav_icons.forEach((style_class) => {
+          sidenav_icons[i].classList.remove(style_class);
+        });
+      }
+      
+    } 
+    else
+    {
+      sidenav.classList.remove( "xl:bg-white" );
+      sidenav.classList.remove( "shadow-soft-xl" );
+      sidenav.classList.add( "xl:bg-transparent" );
+      sidenav.classList.add( "shadow-none" );
+      
+      // sidenav_highlight.classList.remove("shadow-soft-xl");
+      // sidenav_highlight.classList.add("shadow-soft-xl");
+
+      for (var i = 0; i < sidenav_icons.length; i++)
+      {
+        white_sidenav_icons.forEach((style_class) => {
+          sidenav_icons[i].classList.remove(style_class);
+        });
+        transparent_sidenav_icons.forEach((style_class) => {
+          sidenav_icons[i].classList.add(style_class);
+        });
+      }
+    }
+
+  }
+  function sidenavTypeClass( btn )
+  {
+
+    if ( store_theme.sidenav_type == btn )
+    {
+      return 'inline-block w-full px-4 py-3 mb-2 text-xs font-bold text-center text-white uppercase align-middle transition-all border border-transparent border-solid rounded-lg cursor-pointer xl-max:cursor-not-allowed xl-max:opacity-65 xl-max:pointer-events-none xl-max:bg-gradient-to-tl xl-max:from-purple-700 xl-max:to-pink-500 xl-max:text-white xl-max:border-0 hover:scale-102 hover:shadow-soft-xs active:opacity-85 leading-pro ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 bg-gradient-to-tl from-purple-700 to-pink-500 bg-fuchsia-500 hover:border-fuchsia-500';
+    } else {
+      return 'inline-block w-full px-4 py-3 mb-2 text-xs font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg cursor-pointer xl-max:cursor-not-allowed xl-max:opacity-65 xl-max:pointer-events-none xl-max:bg-gradient-to-tl xl-max:from-purple-700 xl-max:to-pink-500 xl-max:text-white xl-max:border-0 hover:scale-102 hover:shadow-soft-xs active:opacity-85 leading-pro ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 border-fuchsia-500 bg-none text-fuchsia-500 hover:border-fuchsia-500';
+    }
+    
+  }
+
+
+  
+  async function themeInit()
+  {
+    navbarFixed( );
+    sidenavType();
   }
 
 </script>
@@ -36,6 +171,24 @@
           </button>
         </div>
         <!-- End Toggle Button -->
+
+        
+      </div>
+      
+      <div class="flex-auto p-6 pt-0 sm:pt-4">
+        <!-- Sidebar Backgrounds -->
+        <div>
+          <h6 class="mb-0">Dark mode : {{ $colorMode.value }}</h6>
+        </div>
+        <div>
+        <select v-model="$colorMode.preference">
+          <option value="system">System</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+          <option value="sepia">Sepia</option>
+        </select>
+      </div>
+
       </div>
 
       <hr class="h-px mx-0 my-1 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent" />
@@ -61,8 +214,12 @@
           <p class="text-sm leading-normal">Choose between 2 different sidenav types.</p>
         </div>
         <div class="flex">
-          <button transparent-style-btn class="inline-block w-full px-4 py-3 mb-2 text-xs font-bold text-center text-white uppercase align-middle transition-all border border-transparent border-solid rounded-lg cursor-pointer xl-max:cursor-not-allowed xl-max:opacity-65 xl-max:pointer-events-none xl-max:bg-gradient-to-tl xl-max:from-purple-700 xl-max:to-pink-500 xl-max:text-white xl-max:border-0 hover:scale-102 hover:shadow-soft-xs active:opacity-85 leading-pro ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 bg-gradient-to-tl from-purple-700 to-pink-500 bg-fuchsia-500 hover:border-fuchsia-500" data-class="bg-transparent" active-style>Transparent</button>
-          <button white-style-btn class="inline-block w-full px-4 py-3 mb-2 ml-2 text-xs font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg cursor-pointer xl-max:cursor-not-allowed xl-max:opacity-65 xl-max:pointer-events-none xl-max:bg-gradient-to-tl xl-max:from-purple-700 xl-max:to-pink-500 xl-max:text-white xl-max:border-0 hover:scale-102 hover:shadow-soft-xs active:opacity-85 leading-pro ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 border-fuchsia-500 bg-none text-fuchsia-500 hover:border-fuchsia-500" data-class="bg-white">White</button>
+          <button @click="sidenavTypeChange( 'bg-transparent' )" :class="sidenavTypeClass( 'bg-transparent' )" data-class="bg-transparent" id="type-bg-transparent" >
+            Transparent
+          </button>
+          <button @click="sidenavTypeChange( 'bg-white' )" :class="sidenavTypeClass( 'bg-white' )" class="ml-2" data-class="bg-white" id="type-bg-white" >
+            White
+          </button>
         </div>
         <p class="block mt-2 text-sm leading-normal xl:hidden">You can change the sidenav type just on desktop view.</p>
         <!-- Navbar Fixed -->
@@ -70,7 +227,7 @@
           <h6 class="mb-0">Navbar Fixed</h6>
         </div>
         <div class="min-h-6 mb-0.5 block pl-0">
-          <input navbarFixed class="rounded-10 duration-250 ease-soft-in-out after:rounded-circle after:shadow-soft-2xl after:duration-250 checked:after:translate-x-5.25 h-5 relative float-left mt-1 ml-auto w-10 cursor-pointer appearance-none border border-solid border-gray-200 bg-slate-800/10 bg-none bg-contain bg-left bg-no-repeat align-top transition-all after:absolute after:top-px after:h-4 after:w-4 after:translate-x-px after:bg-white after:content-[''] checked:border-slate-800/95 checked:bg-slate-800/95 checked:bg-none checked:bg-right" type="checkbox" />
+          <input navbarFixed @change="navbarFixedChange()" v-model="store_theme.navbar_fixed" class="rounded-10 duration-250 ease-soft-in-out after:rounded-circle after:shadow-soft-2xl after:duration-250 checked:after:translate-x-5.25 h-5 relative float-left mt-1 ml-auto w-10 cursor-pointer appearance-none border border-solid border-gray-200 bg-slate-800/10 bg-none bg-contain bg-left bg-no-repeat align-top transition-all after:absolute after:top-px after:h-4 after:w-4 after:translate-x-px after:bg-white after:content-[''] checked:border-slate-800/95 checked:bg-slate-800/95 checked:bg-none checked:bg-right" type="checkbox" />
         </div>
         <hr class="h-px bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent sm:my-6" />
         <a class="inline-block w-full px-6 py-3 mb-4 text-xs font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer leading-pro ease-soft-in hover:shadow-soft-xs hover:scale-102 active:opacity-85 tracking-tight-soft shadow-soft-md bg-150 bg-x-25 bg-gradient-to-tl from-gray-900 to-slate-800" href="https://www.creative-tim.com/product/soft-ui-dashboard-tailwind" target="_blank">Free Download</a>

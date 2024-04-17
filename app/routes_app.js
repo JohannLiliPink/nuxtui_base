@@ -1,12 +1,5 @@
 
-export const website_routes = [
-
-
-  {
-    name: 'home',
-    path: '/',
-    component: () => import('~/pages/dashboard.vue').then(r => r.default || r)
-  },
+export const app_routes = [
 
   {
     name: 'dashboard',
