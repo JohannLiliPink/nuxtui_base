@@ -14,5 +14,11 @@ export const app_routes = [
     component: () => import('~/pages/test.vue').then(r => r.default || r)
   },
 
+  {
+    name: 'archivo',
+    path: '/archivo',
+    component: () => import('~/pages/upload.vue').then(r => r.default || r)
+  },
+
  
 ];

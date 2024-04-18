@@ -39,6 +39,10 @@ export default defineNuxtConfig({
     exposeConfig: false,
     config: {},
     viewer: true,
-  }
+  },
+
+
+
+  plugins: ['~/plugins/pako'],
 
 })

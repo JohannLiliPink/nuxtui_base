@@ -10,7 +10,7 @@ export default defineNuxtRouteMiddleware( async ( to , from ) => {
 
   const store_app = useAppStore();
 
-  // return;
+  return;
 
   
   if (process.client)
